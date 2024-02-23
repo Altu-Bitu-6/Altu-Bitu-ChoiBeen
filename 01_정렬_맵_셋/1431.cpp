@@ -8,7 +8,7 @@ int sum(string str) {
     int result = 0;
     for(int i = 0; i< str.length(); i++) {
         if(isdigit(str[i])) { //숫자인 경우만 더하기
-            result += int(str[i]) - 48; //아스키코드 감안해서 (- 48)
+            result += int(str[i]) - '0'; //아스키코드 감안해서 (- '0')
         }
     }
     return result;
