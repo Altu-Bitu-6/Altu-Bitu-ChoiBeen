@@ -7,37 +7,37 @@ using namespace std;
 void checkBalance(string str) {
     stack<char> s;
     bool check = true;
-            for(int i = 0; i < str.length(); i++) {
-            if(str[i] == '(' || str[i] == '[') {
-                s.push(str[i]);
-            } 
-            if(str[i] == ')') {
-                if(!s.empty() && s.top() == '(') {
-                    s.pop();
-                }
-                else {
-                    check = false;
-                    break;
-                }
+    for(int i = 0; i < str.length(); i++) {
+        if(str[i] == '(' || str[i] == '[') {
+            s.push(str[i]);
+        } 
+        if(str[i] == ')') {
+            if(!s.empty() && s.top() == '(') {
+                s.pop();
             }
-            else if(str[i] == ']') {
-                if(!s.empty() && s.top() == '[') {
-                    s.pop();
-                }
-                else {
-                    check = false;
-                    break;
-                }
+            else {
+                check = false;
+                break;
             }
         }
+        else if(str[i] == ']') {
+            if(!s.empty() && s.top() == '[') {
+                s.pop();
+            }
+            else {
+                check = false;
+                break;
+            }
+        }
+    }
 
-        //출력
-        if(check && s.empty()) {
-            cout << "yes" << '\n';
-        }
-        else {
-            cout << "no" << '\n';
-        }
+    //출력
+    if(check && s.empty()) {
+        cout << "yes" << '\n';
+    }
+    else {
+        cout << "no" << '\n';
+    }
 
 }
 

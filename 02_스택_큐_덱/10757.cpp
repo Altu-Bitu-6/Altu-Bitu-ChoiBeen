@@ -4,7 +4,7 @@
 
 using namespace std;
 
-string sum(vector<int> arr_a, vector<int> arr_b) {
+string sum(vector<int> &arr_a, vector<int> &arr_b) {
     string result;
     bool ten = false;
 
@@ -13,13 +13,8 @@ string sum(vector<int> arr_a, vector<int> arr_b) {
         if(ten) {
             add++;
         }
-        if(add >= 10) {
-            ten = true;
-            add %= 10;
-        }
-        else {
-            ten = false;
-        }
+        ten = add / 10;
+        add %= 10;
         result += add + '0';
     }
 
@@ -39,9 +34,7 @@ int main() {
 
     //더 긴 문자열을 a로 설정
     if(a.size() < b.size()) {
-        string tmp = a;
-        a = b;
-        b = tmp;
+        swap(a, b);
     }
     
     vector<int> arr_a(a.size());
