@@ -8,7 +8,7 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int n, x;
+    int n, x, y;
     cin >> n;
     priority_queue<int> max_heap;
 
@@ -16,7 +16,7 @@ int main() {
         cin >> x;
         if(x == 0) {
             if(max_heap.empty()) {
-                cout << -1 << '\n';
+                cout << "-1\n";
             }
             else {
             cout << max_heap.top() << '\n';
@@ -24,7 +24,7 @@ int main() {
             }
         }
         else {
-            int y;
+            
             for(int i = 0; i < x; i++) {
                 cin >> y;
                 max_heap.push(y);
