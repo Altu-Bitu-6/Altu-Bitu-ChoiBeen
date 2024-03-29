@@ -1,37 +1,28 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
-void calculator(string order, int x, vector<bool> &s) {
+void perform(string order, int x, int& s) {
     if(order == "add") {
-        s[x] = true;
+        s |= (1 << x);
     }
     else if(order == "remove") {
-        s[x] = false;
+        s &= ~(1 << x);
     }
     else if(order == "toggle") {
-        if(s[x] == true) {
-            s[x] = false;
-        } else {
-            s[x] = true;;
-        }
+        s ^= (1 << x);
     }
 }
 
-int check(int x, vector<bool> &s) {
-    if(s[x] == true) {
+int check(int x, int& s) {
+    if(s & (1 << x)) {
         return 1;
-    } else {
+    }
+    else {
         return 0;
     }
 }
 
-void changeAll(vector<bool> &s, bool b) {
-    for(int i = 1; i < s.size(); i++) {
-        s[i] = b;
-    }
-}
 
 int main() {
     //입출력 속도 향상
@@ -45,15 +36,15 @@ int main() {
 
     string order;
     int x = 0;
-    vector<bool> s(21, false);
+    int s = 0;
 
     //연산&출력
     while(m--) {
         cin >> order;
         if(order == "all") {
-            changeAll(s, true);
+            s = (1 << 21) - 1;
         } else if(order == "empty") {
-            changeAll(s, false);
+            s = 0;
         }
         else {
             cin >> x;
@@ -61,7 +52,7 @@ int main() {
                 cout << check(x, s) << '\n';
             }
             else {
-                calculator(order, x, s);
+                perform(order, x, s);
             }
         }
     }
